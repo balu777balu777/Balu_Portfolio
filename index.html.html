@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0f;
+  --surface:#13131a;
+  --surface2:#1c1c26;
+  --accent:#6c63ff;
+  --accent2:#ff6b6b;
+  --accent3:#43e97b;
+  --text:#f0f0f8;
+  --muted:#8888a8;
+  --border:rgba(255,255,255,0.07);
+}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden}
+.portfolio{max-width:900px;margin:0 auto;padding:0 24px 80px}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--border);margin-bottom:60px;position:sticky;top:0;background:var(--bg);z-index:99}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.5px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.5px;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+
+/* HERO */
+.hero{padding:40px 0 80px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(108,99,255,0.12);border:1px solid rgba(108,99,255,0.3);border-radius:100px;padding:6px 14px;font-size:12px;color:var(--accent);font-weight:500;margin-bottom:20px}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent3);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+h1{font-family:'Syne',sans-serif;font-size:clamp(36px,5vw,56px);font-weight:800;line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px}
+h1 .line2{color:var(--accent)}
+.hero-sub{color:var(--muted);font-size:16px;max-width:480px;line-height:1.7;margin-bottom:32px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--accent);color:#fff;padding:12px 28px;border-radius:8px;font-weight:500;font-size:14px;text-decoration:none;transition:opacity 0.2s;border:none;cursor:pointer}
+.btn-primary:hover{opacity:0.85}
+.btn-ghost{background:transparent;color:var(--text);padding:12px 28px;border-radius:8px;font-weight:500;font-size:14px;text-decoration:none;border:1px solid var(--border);transition:border-color 0.2s;cursor:pointer}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.3)}
+.avatar-block{width:160px;height:160px;border-radius:20px;background:linear-gradient(135deg,rgba(108,99,255,0.3),rgba(67,233,123,0.2));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:48px;font-weight:800;color:var(--accent);flex-shrink:0}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:80px}
+.stat{background:var(--surface);padding:20px 24px}
+.stat-num{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;letter-spacing:-1px}
+.stat-num span{color:var(--accent)}
+.stat-label{color:var(--muted);font-size:12px;margin-top:2px}
+
+/* SECTION */
+.section{margin-bottom:72px}
+.section-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:8px}
+.section-title{font-family:'Syne',sans-serif;font-size:28px;font-weight:700;letter-spacing:-0.5px;margin-bottom:32px}
+
+/* SKILLS */
+.skills-grid{display:flex;flex-wrap:wrap;gap:8px}
+.skill-tag{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:8px 14px;font-size:13px;color:var(--muted);transition:all 0.2s;cursor:default}
+.skill-tag:hover{border-color:rgba(108,99,255,0.5);color:var(--accent);background:rgba(108,99,255,0.06)}
+.skill-tag.highlight{border-color:rgba(108,99,255,0.4);color:var(--accent);background:rgba(108,99,255,0.1)}
+
+/* PROJECTS */
+.projects{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.project-card{background:var(--surface);padding:28px;transition:background 0.2s;cursor:pointer}
+.project-card:hover{background:var(--surface2)}
+.project-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.project-name{font-family:'Syne',sans-serif;font-size:17px;font-weight:700}
+.project-tags{display:flex;gap:6px;flex-wrap:wrap}
+.project-tag{background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);color:var(--accent);border-radius:4px;padding:3px 9px;font-size:11px;font-weight:500}
+.project-desc{color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:14px}
+.project-metrics{display:flex;gap:20px}
+.metric{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--accent3);font-weight:500}
+.metric::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--accent3)}
+
+/* EXPERIENCE */
+.exp-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:28px;position:relative;overflow:hidden}
+.exp-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--accent),var(--accent3))}
+.exp-role{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:4px}
+.exp-company{color:var(--accent);font-size:13px;font-weight:500;margin-bottom:4px}
+.exp-period{color:var(--muted);font-size:12px;margin-bottom:16px}
+.exp-points{list-style:none;display:flex;flex-direction:column;gap:8px}
+.exp-points li{color:var(--muted);font-size:13px;padding-left:16px;position:relative;line-height:1.6}
+.exp-points li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:11px;top:2px}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.contact-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--text);transition:all 0.2s}
+.contact-card:hover{border-color:rgba(108,99,255,0.4);background:var(--surface2)}
+.contact-icon{width:36px;height:36px;border-radius:8px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.contact-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px}
+.contact-value{font-size:13px;font-weight:500}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding-top:32px;display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}
+
+/* SCROLL ANIMATIONS */
+.fade-in{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<div class="portfolio">
+
+<nav>
+  <div class="logo">BA<span>.</span></div>
+  <div class="nav-links">
+    <a href="#">About</a>
+    <a href="#">Projects</a>
+    <a href="#">Experience</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
+<section class="hero fade-in">
+  <div>
+    <div class="hero-badge">Open to internships & full-time roles</div>
+    <h1>Balu<br><span class="line2">Atchutha.</span></h1>
+    <p class="hero-sub">CS undergrad who turns raw data into decisions. I build ML pipelines, analytics tools, and things that actually make sense to non-technical people.</p>
+    <div class="hero-cta">
+      <a href="mailto:baluatchutha777@gmail.com" class="btn-primary">Get in touch</a>
+      <a href="https://github.com/balu777balu777" class="btn-ghost">View GitHub</a>
+    </div>
+  </div>
+  <div class="avatar-block">BA</div>
+</section>
+
+<div class="stats fade-in">
+  <div class="stat">
+    <div class="stat-num"><span>200</span>+</div>
+    <div class="stat-label">Problems solved</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num"><span>8.26</span></div>
+    <div class="stat-label">CGPA (B.Tech CSE)</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num"><span>2</span></div>
+    <div class="stat-label">ML projects shipped</div>
+  </div>
+</div>
+
+<section class="section fade-in">
+  <div class="section-label">What I work with</div>
+  <div class="section-title">Skills</div>
+  <div class="skills-grid">
+    <span class="skill-tag highlight">Python</span>
+    <span class="skill-tag highlight">SQL</span>
+    <span class="skill-tag highlight">Machine Learning</span>
+    <span class="skill-tag highlight">Data Analysis</span>
+    <span class="skill-tag">Java</span>
+    <span class="skill-tag">Pandas</span>
+    <span class="skill-tag">NumPy</span>
+    <span class="skill-tag">Scikit-learn</span>
+    <span class="skill-tag">XGBoost</span>
+    <span class="skill-tag">MySQL</span>
+    <span class="skill-tag">NLP</span>
+    <span class="skill-tag">MS Excel</span>
+    <span class="skill-tag">Git</span>
+    <span class="skill-tag">Jupyter</span>
+    <span class="skill-tag">OOP</span>
+    <span class="skill-tag">DBMS</span>
+    <span class="skill-tag">Data Structures</span>
+    <span class="skill-tag">KYC / AML</span>
+  </div>
+</section>
+
+<section class="section fade-in">
+  <div class="section-label">What I've built</div>
+  <div class="section-title">Projects</div>
+  <div class="projects">
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-name">AI Resume Analyzer</div>
+        <div class="project-tags">
+          <span class="project-tag">NLP</span>
+          <span class="project-tag">Scikit-learn</span>
+          <span class="project-tag">Python</span>
+        </div>
+      </div>
+      <p class="project-desc">Built an end-to-end pipeline that matches resumes to job descriptions using TF-IDF and cosine similarity. Automated candidate shortlisting and delivered structured recruiter-friendly reports from complex NLP output.</p>
+      <div class="project-metrics">
+        <span class="metric">60% faster shortlisting</span>
+        <span class="metric">100+ formats analyzed</span>
+        <span class="metric">5+ model iterations</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <div class="project-name">Bank Loan Default Predictor</div>
+        <div class="project-tags">
+          <span class="project-tag">XGBoost</span>
+          <span class="project-tag">Pandas</span>
+          <span class="project-tag">Python</span>
+        </div>
+      </div>
+      <p class="project-desc">Trained classification models (Logistic Regression, Random Forest, XGBoost) on 10,000+ customer records to predict loan default risk. Surfaced 3 key features driving 70% of accuracy and built a non-technical risk scoring interface.</p>
+      <div class="project-metrics">
+        <span class="metric">10,000+ data points</span>
+        <span class="metric">70% accuracy from 3 features</span>
+        <span class="metric">3 models compared</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section fade-in">
+  <div class="section-label">Where I've worked</div>
+  <div class="section-title">Experience</div>
+  <div class="exp-card">
+    <div class="exp-role">Data Analytics Intern</div>
+    <div class="exp-company">EduNet Foundation · Microsoft Initiative</div>
+    <div class="exp-period">Dec 2024 — Jan 2025</div>
+    <ul class="exp-points">
+      <li>Flagged and resolved 30+ data inconsistencies, improving downstream report reliability</li>
+      <li>Built dashboards tracking campaign metrics — cut manual review time by ~40%</li>
+      <li>Compiled analytical findings into concise presentations for non-technical stakeholders</li>
+      <li>Collaborated in team reviews and proposed workflow improvements that were adopted</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section fade-in">
+  <div class="section-label">Education</div>
+  <div class="section-title">Background</div>
+  <div class="exp-card">
+    <div class="exp-role">B.Tech — Computer Science & Engineering</div>
+    <div class="exp-company">Amrita Sai Institute of Science and Technology</div>
+    <div class="exp-period">2022 — 2026 · CGPA 8.26</div>
+    <ul class="exp-points">
+      <li>Core subjects: OOP, Data Structures, DBMS, Operating Systems, Machine Learning</li>
+      <li>Solved 200+ analytical and DSA problems across competitive platforms</li>
+      <li>Completed industry internship while maintaining top CGPA</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section fade-in">
+  <div class="section-label">Let's connect</div>
+  <div class="section-title">Contact</div>
+  <div class="contact-grid">
+    <a href="mailto:baluatchutha777@gmail.com" class="contact-card">
+      <div class="contact-icon">✉</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">baluatchutha777@gmail.com</div>
+      </div>
+    </a>
+    <a href="https://linkedin.com/in/balu-atchutha" class="contact-card">
+      <div class="contact-icon">in</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">balu-atchutha</div>
+      </div>
+    </a>
+    <a href="https://github.com/balu777balu777" class="contact-card">
+      <div class="contact-icon">⌥</div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">balu777balu777</div>
+      </div>
+    </a>
+    <div class="contact-card">
+      <div class="contact-icon">☎</div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+91 8309999234</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Balu Atchutha · Vijayawada, Andhra Pradesh</span>
+  <span>B.Tech CSE · 2026</span>
+</footer>
+
+</div>
+
+<script>
+const els = document.querySelectorAll('.fade-in');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+}, {threshold: 0.1});
+els.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
